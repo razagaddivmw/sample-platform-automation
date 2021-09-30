@@ -1,0 +1,3 @@
+platform-automation-bucket: your-bucket-name
+credhub-server: https://your-credhub.example.com
+opsman-url: https://opsmgr-01.haas-474.pez.vmware.com/
