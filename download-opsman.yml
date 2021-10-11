@@ -1,0 +1,5 @@
+---
+pivnet-api-token: bb686295544545bd8f6390c211d730dd-r
+pivnet-file-glob: "ops-manager*.ova"
+pivnet-product-slug: ops-manager
+product-version-regex: ^2\.5\.0.*$

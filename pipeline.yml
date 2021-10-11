@@ -6,12 +6,21 @@ resource_types:
   source:
     repository: pivotalcf/pivnet-resource
     tag: latest-final
+
 resources:
 - name: platform-automation
   type: pivnet
   source:
     product_slug: platform-automation
     api_token: ((pivnet-refresh-token))
+- name: installation
+  type: s3
+  source:
+    endpoint: http://127.0.0.1:9000
+    access_key_id: W1ZGVWWGWL6W3FLAGDEL
+    secret_access_key: 8sJr081vTkEs1IdmMpqr+qR+e9uRsGtsc8dY9Fw8
+    bucket: ((platform-automation-bucket))
+    regexp: installation-(.*).zip
 
 jobs:
 - name: export-installation
@@ -27,10 +36,34 @@ jobs:
       params:
         globs: ["*tasks*.zip"]
         unpack: true
-    - get: env
     - task: export-installation
       image: platform-automation-image
       file: platform-automation-tasks/tasks/export-installation.yml
     - put: installation
       params:
         file: installation/installation-*.zip
+- name: upgrade-opsman
+  serial: true
+  plan:
+  - get: platform-automation-image
+    resource: platform-automation
+    params:
+      globs: ["*image*.tgz"]
+      unpack: true
+  - get: platform-automation-tasks
+    resource: platform-automation
+    params:
+      globs: ["*tasks*.zip"]
+      unpack: true
+  - get: installation
+  - task: download-opsman-image
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-opsman.yml
+  - task: upgrade-opsman
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/upgrade-opsman.yml
+    input_mapping:
+      image: downloaded-product
+      state: env

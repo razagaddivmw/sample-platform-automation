@@ -1,3 +1,12 @@
 platform-automation-bucket: platform-automation
 credhub-server: https://opsmgr-01.haas-474.pez.vmware.com
 opsman-url: https://opsmgr-01.haas-474.pez.vmware.com
+
+target: ((opsman-url))
+username: admin
+password: yTQTj-snHDep13g0fmNH3oVW3zb641WM
+decryption-passphrase: passpharase
+
+iaas: vsphere
+# Path to the VM in vCenter
+vm_id: /Datacenter/Cluster/opsmgr-01

@@ -1,0 +1,41 @@
+---
+opsman-configuration:
+  vsphere:
+    vcenter:
+      ca_cert: cert                 # REQUIRED if insecure = 0 (secure)
+      datacenter: Datacenter
+      datastore: LUN01
+      url: https://vcsa-01.haas-474.pez.vmware.com
+      username: administrator@vsphere.local
+      password: P7DHO0MQx6D5pDATzh!
+
+      # resource_pool can use a cluster - /example-dc/host/example-cluster
+
+      # Optional
+      # host: host      # DEPRECATED - Platform Automation cannot guarantee
+                        # the location of the VM, given the nature of vSphere
+      # insecure: 0     # default - 0 (secure) | 1 (insecure)
+
+    disk_type: thin     # thin|thick
+    dns: 8.8.8.8
+    gateway: 10.213.102.1
+    hostname: https://opsmgr-01.haas-474.pez.vmware.com/
+    netmask: 255.255.255.0
+    network: example-virtual-network
+    ntp: ntp1.svc.pivotal.io
+    private_ip: 10.213.102.10
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+T7cBza4a8T439u8mUFIszbDdmRTbwVQVPh4KMo0/6OMuHML7EvqGQ0N6pEK4mgQzfQIRbqH15DiTluzH2pDj8eeL2dxIBhmruQW7UzjxfoSA3WdsZaRoDd3WYOxfMKKdn9CpwSPLtdrG2tAgbScw8YFCeCZsqpEzzkb3M6gIEFQs4DaEIEjqn5s4Fs7EWlPrdYEKHC3f/1lGhw/ScAkBzq1yNFDtFm8ptrc0Ybp0d3H6ZxLq4oJF701MxzsDNX9cTIYc2GbWdzXy2poWkvE/r/yUTe9sISieO+8tXmSc+MRTklB9mFO5ENz9Nb2UXHj9QuiiKlEAo5RHZe7kGC+V   # REQUIRED Ops Manager >= 2.6
+
+    # Optional
+    # cpu: 1                         # default - 1
+    # memory: 8                      # default - 8 (GB)
+    # ssh_password: ((ssh-password)) # REQUIRED if ssh_public_key not defined
+                                     # (Ops Manager < 2.6 ONLY)
+    # vm_name: ops-manager-vm        # default - ops-manager-vm
+
+  # Optional Ops Manager UI Settings for upgrade-opsman
+  # ssl-certificate: ...
+  # pivotal-network-settings: ...
+  # banner-settings: ...
+  # syslog-settings: ...
+  # rbac-settings: ...
