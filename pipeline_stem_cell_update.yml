@@ -1,4 +1,4 @@
-jobs: 
+jobs:
 - name: download-upload-and-stage-tas
   serial: true
   plan:
@@ -21,13 +21,10 @@ jobs:
         tasks: platform-automation-tasks
       params:
         CONFIG_PATHS: config
-    - task: download-tas
+    - task: download-stemcell
       image: platform-automation-image
       file: platform-automation-tasks/tasks/download-product.yml
       input_mapping:
         config: config
       params:
-        CONFIG_FILE: download-tas.yml
-      output_mapping:
-        downloaded-product: tas-product
-        downloaded-stemcell: tas-stemcell
+        CONFIG_FILE: download-stemcell.yml

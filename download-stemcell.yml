@@ -1,0 +1,5 @@
+---
+pivnet-api-token: ((pivnet_token))
+pivnet-file-glob: "bosh-stemcell-*-aws*.tgz"
+pivnet-product-slug: stemcells-ubuntu-xenial
+product-version-regex: ^170\..*$
